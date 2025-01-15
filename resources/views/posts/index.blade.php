@@ -18,7 +18,7 @@
     </tr>
     @foreach($posts as $post)
     <tr>
-      <td>{{ $post->text }}</td>
+      <td>{{ $post->title }}</td>
       <td>{{ $post->content }}</td>
     </tr>
     @endforeach

@@ -18,4 +18,27 @@ class PostController extends Controller
 
         return view('posts.show', compact('post'));
     }
+
+    public function create(){
+        return view('posts.create');
+    }
+
+    public function store(Request $request){
+        // バリデーション設定
+        $request->validate([
+            'title' =>'required|max:20',
+            'content' =>'required|max:200'
+        ]);
+
+        // postsテーブルにデータの追加
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->save();
+
+        // リダイレクとする
+        return redirect("/posts/{$post->id}");
+        
+    }
+
 }
